@@ -1,0 +1,78 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* (A) 3 COLUMNS PER ROW */
+.GameBoard {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px; 
+  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  grid-gap: 5px;
+  margin: 50px;
+  justify-content: center;
+}
+
+/* (C) OPTIONAL FOR THE CELLS */
+.head, .cell { padding: 10px; }
+.cell {
+  font-weight: bold;
+  font-size: medium;
+  border: 1px solid #373636;
+  background: #716f6f;
+  color: #ffffff;
+}
+
+.bomb{
+  font-weight: bold;
+  font-size: medium;
+  border: 1px solid #373636;
+  background: #9a1d1d;
+  color: #ffffff;
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+
+.show{
+  display: block;
+}
+
+
+
