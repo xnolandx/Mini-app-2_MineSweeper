@@ -64,7 +64,7 @@
   font-weight: bold;
   font-size: medium;
   border: 1px solid #373636;
-  background: #9a1d1d;
+  background: #716f6f;
   color: #ffffff;
   text-align: center;
   justify-content: center;
@@ -73,15 +73,10 @@
 
 .value {
   display: none;
+  /* background: #716f6f; */
 }
 
-.hide {
-  display: none;
-}
 
-.show{
-  display: block;
-}
 
 
 

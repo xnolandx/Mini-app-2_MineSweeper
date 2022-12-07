@@ -215,15 +215,16 @@ function showTheValue(cell, index) {
   let hiddenValue = document.getElementById(`${index}`)
   hiddenValue.style.display = 'block'
   if (cell.isBomb){
-    let boom = document.getElementsByClassName(`bomb`)
-    for (let item of boom){
-      console.log(item)
-      item.style.display ='block'
+    let boom = document.getElementsByClassName(`value`)
+    for (let test of boom){
+      test.style.display = 'block'
     }
-    
-  } else {
-    console.log('phew')
-  }
+    let boom2 = document.getElementsByClassName(`bomb`)
+    for (let test of boom2){
+      test.style.background = '#b72828'
+    }
+    // alert('Kaboom! Sorry You Lost!')
+  } 
 }
 
 let bombRender = () => {
@@ -231,7 +232,7 @@ let bombRender = () => {
     return (          
       cell.isBomb === true
       ? 
-      (<div className='bomb' key={index} onClick={(event) => {
+      (<div className='bomb' key={index} id='bomb' onClick={(event) => {
         showTheValue(cell, index)
         cell.wasClicked = true
         }}>
