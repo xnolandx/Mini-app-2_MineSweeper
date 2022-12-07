@@ -5,8 +5,11 @@ import React, { useState, useEffect, useContext } from "react";
 function App() {
   const [board, setBoard] = useState([])
   const [board2, setBoard2] = useState([])
+  const [board3, setBoard3] = useState([])
+ 
 
 let outerArray = [];
+let bomb = '💣'
 
 
 
@@ -34,7 +37,7 @@ useEffect(() => {
     board.forEach((cell, index) => {
       array.forEach((number) => {
         if (number === index) {
-          cell.isBomb = 'true'
+          cell.isBomb = true
         }
       })
       newBoard.push(cell)
@@ -42,18 +45,192 @@ useEffect(() => {
     setBoard2(newBoard)
   }, [board])
 
+
+//change the value 
+useEffect(() => {
+  for (let i = 0; i < board2.length; i++){
+    let cell = board2[i]
+    if (cell.isBomb === true){
+      cell.value = bomb
+      // first 4 edge cases are the corners:
+      // top left
+      if(cell.x === 1 && cell.y === 1){
+        if (board2[i+1].value !== bomb){
+          board2[i+1].value += 1
+        }
+        if (board2[i+10].value !== bomb){
+          board2[i+10].value += 1
+        }
+        if (board2[i+11].value !== bomb){
+          board2[i+11].value += 1
+        }
+      }
+      // top right
+      if(cell.x === 1 && cell.y === 10){
+        if (board2[i-1].value !== bomb){
+          board2[i-1].value += 1
+        }
+        if (board2[i+9].value !== bomb){
+          board2[i+9].value += 1
+        }
+        if (board2[i+10].value !== bomb){
+          board2[i+10].value += 1
+        }
+      }
+      // bottom left
+      if(cell.x === 10 && cell.y === 1){
+        if (board2[i-10].value !== bomb){
+          board2[i-10].value += 1
+        }
+        if (board2[i-9].value !== bomb){
+          board2[i-9].value += 1
+        }
+        if (board2[i+1].value !== bomb){
+          board2[i+1].value += 1
+        }
+      } 
+      // bottom right 
+      if(cell.x === 10 && cell.y === 10){
+        if (board2[i-10].value !== bomb){
+          board2[i-10].value += 1
+        }
+        if (board2[i-11].value !== bomb){
+          board2[i-11].value += 1
+        }
+        if (board2[i-1].value !== bomb){
+          board2[i-1].value += 1
+        }
+      }
+      // next 4 edge case are the edges
+      // top edge
+      if (cell.x === 1 && cell.y !== 1 && cell.y !== 10){
+        if (board2[i-1].value !== bomb){
+          board2[i-1].value += 1
+        }
+        if (board2[i+1].value !== bomb){
+          board2[i+1].value += 1
+        }
+        if (board2[i+9].value !== bomb){
+          board2[i+9].value += 1
+        }
+        if (board2[i+10].value !== bomb){
+          board2[i+10].value += 1
+        }
+        if (board2[i+11].value !== bomb){
+          board2[i+11].value += 1
+        }
+      }
+      // right edge
+      if (cell.y === 10 && cell.x !== 1 && cell.x !== 10){
+        if (board2[i-10].value !== bomb){
+          board2[i-10].value += 1
+        }
+        if (board2[i-11].value !== bomb){
+          board2[i-11].value += 1
+        }
+        if (board2[i-1].value !== bomb){
+          board2[i-1].value += 1
+        }
+        if (board2[i+9].value !== bomb){
+          board2[i+9].value += 1
+        }
+        if (board2[i+10].value !== bomb){
+          board2[i+10].value += 1
+        }
+      }
+      // bottom edge
+      if (cell.x === 10 && cell.y !== 1 && cell.y !== 10){
+        if (board2[i-1].value !== bomb){
+          board2[i-1].value += 1
+        }
+        if (board2[i-9].value !== bomb){
+          board2[i-9].value += 1
+        }
+        if (board2[i-10].value !== bomb){
+          board2[i-10].value += 1
+        }
+        if (board2[i-11].value !== bomb){
+          board2[i-11].value += 1
+        }
+        if (board2[i+1].value !== bomb){
+          board2[i+1].value += 1
+        }
+      }
+      // left edge
+      if (cell.y === 1 && cell.x !== 1 && cell.x !== 10){
+        if (board2[i-10].value !== bomb){
+          board2[i-10].value += 1
+        }
+        if (board2[i-9].value !== bomb){
+          board2[i-9].value += 1
+        }
+        if (board2[i+1].value !== bomb){
+          board2[i+1].value += 1
+        }
+        if (board2[i+10].value !== bomb){
+          board2[i+10].value += 1
+        }
+        if (board2[i+11].value !== bomb){
+          board2[i+11].value += 1
+        }
+      }
+      //all the non edges
+      if (cell.x !==1 && cell.x !== 10 && cell.y !== 1 && cell.y !== 10 ){
+        if (board2[i-11].value !== bomb){
+          board2[i-11].value += 1
+        }
+        if (board2[i-10].value !== bomb){
+          board2[i-10].value += 1
+        }
+        if (board2[i-9].value !== bomb){
+          board2[i-9].value += 1
+        }
+        if (board2[i-1].value !== bomb){
+          board2[i-1].value += 1
+        }
+        if (board2[i+1].value !== bomb){
+          board2[i+1].value += 1
+        }
+        if (board2[i+9].value !== bomb){
+          board2[i+9].value += 1
+        }
+        if (board2[i+10].value !== bomb){
+          board2[i+10].value += 1
+        }
+        if (board2[i+11].value !== bomb){
+          board2[i+11].value += 1
+        }
+      }
+      
+    }
+
+  }
+  
+  setBoard3(board2)
+}, [board2])
+
+
 let bombRender = () => {
-  let test = board2.map((cell, index) => {
-    console.log(cell)
+  let test = board3.map((cell, index) => {
     return (          
-      cell.isBomb === 'true'
+      cell.isBomb === true
       ? 
-      <div className='bomb'>X</div>
+      (<div className='bomb' key={index} onClick={(event) => {
+        cell.wasClicked = true
+        console.log(cell)
+      }
+
+        
+      
+      }>{cell.value} </div>)
       : 
-      (<div className='cell' key={index} onClick={(event) => console.log(cell)}>
-        {cell.x}/
-        {cell.y}  
-      </div>)
+      (<div className='cell' key={index} onClick={(event) => {
+        cell.wasClicked = true
+        console.log(cell)
+      }
+        
+      // {cell.x}/{cell.y}
+      }> {cell.value}</div>)
       )
   } )
   return test

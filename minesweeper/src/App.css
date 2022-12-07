@@ -55,6 +55,9 @@
   border: 1px solid #373636;
   background: #716f6f;
   color: #ffffff;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .bomb{
@@ -64,6 +67,8 @@
   background: #9a1d1d;
   color: #ffffff;
   text-align: center;
+  justify-content: center;
+  align-content: center;
 }
 
 .hide {
