@@ -71,6 +71,10 @@
   align-content: center;
 }
 
+.value {
+  display: none;
+}
+
 .hide {
   display: none;
 }

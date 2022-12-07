@@ -6,6 +6,7 @@ function App() {
   const [board, setBoard] = useState([])
   const [board2, setBoard2] = useState([])
   const [board3, setBoard3] = useState([])
+  
  
 
 let outerArray = [];
@@ -18,7 +19,7 @@ useEffect(() => {
     for (let i = 1; i <= 10; i++){
       for(let j = 1; j<=10; j++){
         outerArray.push({
-          wasClicked: false, value: 0, adjacentBombCount: 0, isBomb: 'false', x: i, y:j
+          wasClicked: false, value: 0, adjacentBombCount: 0, isBomb: false, x: i, y:j
         })
       }
     }
@@ -210,31 +211,49 @@ useEffect(() => {
 }, [board2])
 
 
+function showTheValue(cell, index) {
+  let hiddenValue = document.getElementById(`${index}`)
+  hiddenValue.style.display = 'block'
+  if (cell.isBomb){
+    let boom = document.getElementsByClassName(`bomb`)
+    for (let item of boom){
+      console.log(item)
+      item.style.display ='block'
+    }
+    
+  } else {
+    console.log('phew')
+  }
+}
+
 let bombRender = () => {
   let test = board3.map((cell, index) => {
     return (          
       cell.isBomb === true
       ? 
       (<div className='bomb' key={index} onClick={(event) => {
+        showTheValue(cell, index)
         cell.wasClicked = true
-        console.log(cell)
-      }
-
-        
-      
-      }>{cell.value} </div>)
+        }}>
+          <div className='value' id={index}>
+            {cell.value} 
+           </div>
+        </div>)
       : 
       (<div className='cell' key={index} onClick={(event) => {
+        showTheValue(cell, index)
         cell.wasClicked = true
-        console.log(cell)
-      }
-        
-      // {cell.x}/{cell.y}
-      }> {cell.value}</div>)
+        }}>
+          <div className='value' id={index}>
+            {cell.value} 
+          </div>
+         </div>)
       )
   } )
   return test
 }
+
+
 
   return (
     <>
